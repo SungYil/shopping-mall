@@ -5,13 +5,19 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { PrismaModule } from './prisma/prisma.module';
+import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }),
+    // ConfigModule: 환경변수(.env)를 전역에서 사용할 수 있게 설정
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    // 핵심 모듈들 로드
+    PrismaModule,
     AuthModule,
     UsersModule,
-    PrismaModule,
+    ProductsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
