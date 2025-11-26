@@ -1,24 +1,24 @@
 # AWS EC2 배포 가이드 (Amazon Linux 2023)
 
 ## 3. Node.js 설치 (NVM 사용 권장)
-Amazon Linux의 기본 패키지 관리자(dnf)로는 최신 Node.js 버전을 받기 어려울 수 있습니다. **NVM(Node Version Manager)**을 사용하여 v20 이상을 설치하세요.
+(생략)
+
+## 8. PM2 설정 저장 및 업데이트 (중요)
+Node.js 버전을 업데이트했다면, PM2가 사용하는 Node 버전도 업데이트해야 합니다.
 
 ```bash
-# 1. NVM 설치
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+# 1. 기존 프로세스 삭제
+pm2 delete all
 
-# 2. 환경 변수 적용 (또는 터미널 재접속)
-source ~/.bashrc
+# 2. PM2 업데이트 (현재 Node 버전 적용)
+pm2 update
 
-# 3. Node.js v20 설치 (Next.js 14+ 요구사항)
-nvm install 20
-nvm use 20
-nvm alias default 20
+# 3. 서버 재시작 (빌드 다시 필요할 수 있음)
+cd server
+npm run build
+pm2 start dist/main.js --name server
 
-# 4. 버전 확인
-node -v
-# v20.x.x 라고 나와야 합니다.
+# 4. 클라이언트 재시작
+cd ../client
+pm2 start npm --name client -- start
 ```
-
-## 4. Docker & Docker Compose 설치
-(이전과 동일)

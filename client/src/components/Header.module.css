@@ -1,0 +1,43 @@
+.header {
+    border-bottom: 1px solid #eee;
+}
+
+.topBar {
+    background-color: #f8f9fa;
+    padding: 0.5rem 0;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.authLinks {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.mainHeader {
+    padding: 1.5rem 0;
+}
+
+.headerContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.nav {
+    display: flex;
+    gap: 2rem;
+    font-weight: 500;
+}
+
+.nav a:hover {
+    color: #ff6b6b;
+}
