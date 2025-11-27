@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from './page.module.css';
 
 // 상품 데이터 타입 정의
