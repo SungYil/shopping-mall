@@ -89,6 +89,17 @@
   transform: scale(1.05);
 }
 
+.productImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.card:hover .productImage {
+  transform: scale(1.05);
+}
+
 .productName {
   font-size: 1rem;
   margin-bottom: 0.5rem;
@@ -98,6 +109,13 @@
 .price {
   font-weight: bold;
   color: #333;
+}
+
+.noData {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 2rem;
+  color: #888;
 }
 
 /* 반응형 */
