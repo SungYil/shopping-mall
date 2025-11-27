@@ -15,18 +15,24 @@ interface Product {
 }
 
 async function getProduct(id: string): Promise<Product | null> {
+    const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/products/${id}`;
+    console.log(`[ProductDetail] Fetching: ${apiUrl}`);
+
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products/${id}`, {
+        const res = await fetch(apiUrl, {
             cache: 'no-store',
         });
 
+        console.log(`[ProductDetail] Response status: ${res.status}`);
+
         if (!res.ok) {
+            console.error(`[ProductDetail] Fetch failed with status: ${res.status}`);
             return null;
         }
 
         return res.json();
     } catch (error) {
-        console.error('Error fetching product:', error);
+        console.error('[ProductDetail] Error fetching product:', error);
         return null;
     }
 }
