@@ -66,6 +66,12 @@
   gap: 2rem;
 }
 
+.cardLink {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
 .card {
   cursor: pointer;
 }

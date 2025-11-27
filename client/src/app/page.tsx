@@ -62,24 +62,26 @@ export default async function Home() {
         <div className={styles.grid}>
           {products.length > 0 ? (
             products.map((product) => (
-              <div key={product.id} className={styles.card}>
-                <div className={styles.imageWrapper}>
-                  {/* 이미지가 있으면 첫 번째 이미지 표시, 없으면 회색 박스 */}
-                  {product.images && product.images.length > 0 ? (
-                    <img
-                      src={product.images[0]}
-                      alt={product.name}
-                      className={styles.productImage}
-                    />
-                  ) : (
-                    <div className={styles.placeholderImage} />
-                  )}
+              <Link key={product.id} href={`/products/${product.id}`} className={styles.cardLink}>
+                <div className={styles.card}>
+                  <div className={styles.imageWrapper}>
+                    {/* 이미지가 있으면 첫 번째 이미지 표시, 없으면 회색 박스 */}
+                    {product.images && product.images.length > 0 ? (
+                      <img
+                        src={product.images[0]}
+                        alt={product.name}
+                        className={styles.productImage}
+                      />
+                    ) : (
+                      <div className={styles.placeholderImage} />
+                    )}
+                  </div>
+                  <div className={styles.cardInfo}>
+                    <h4 className={styles.productName}>{product.name}</h4>
+                    <p className={styles.price}>{product.price.toLocaleString()}원</p>
+                  </div>
                 </div>
-                <div className={styles.cardInfo}>
-                  <h4 className={styles.productName}>{product.name}</h4>
-                  <p className={styles.price}>{product.price.toLocaleString()}원</p>
-                </div>
-              </div>
+              </Link>
             ))
           ) : (
             <p className={styles.noData}>등록된 상품이 없습니다.</p>
