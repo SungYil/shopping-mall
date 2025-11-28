@@ -22,7 +22,11 @@ export default function ProductActions({ productId }: ProductActionsProps) {
         }
 
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cart`, {
+            console.log('Attempting to add to cart...');
+            console.log('API URL:', process.env.NEXT_PUBLIC_API_URL);
+            console.log('Token:', token);
+
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cart`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -34,16 +38,20 @@ export default function ProductActions({ productId }: ProductActionsProps) {
                 }),
             });
 
-            if (res.ok) {
+            console.log('Response status:', response.status);
+
+            if (response.ok) {
                 if (confirm('장바구니에 상품을 담았습니다. 장바구니로 이동하시겠습니까?')) {
                     router.push('/cart');
                 }
             } else {
-                alert('장바구니 담기에 실패했습니다.');
+                const errorText = await response.text();
+                console.error('Server Error:', errorText);
+                alert(`장바구니 담기 실패: ${response.status}\n${errorText}`);
             }
         } catch (error) {
             console.error('Add to cart error:', error);
-            alert('오류가 발생했습니다.');
+            alert(`오류가 발생했습니다: ${error}`);
         }
     };
 

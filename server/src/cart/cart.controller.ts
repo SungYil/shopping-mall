@@ -16,8 +16,12 @@ export class CartController {
     }
 
     // 장바구니 담기
+    @UseGuards(AuthGuard('jwt'))
     @Post()
-    addToCart(@Request() req, @Body() createCartItemDto: CreateCartItemDto) {
+    addToCart(@Req() req, @Body() createCartItemDto: CreateCartItemDto) {
+        console.log('POST /cart called');
+        console.log('User:', req.user);
+        console.log('Body:', createCartItemDto);
         return this.cartService.addToCart(req.user.userId, createCartItemDto);
     }
 
