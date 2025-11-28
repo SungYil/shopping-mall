@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './page.module.css';
@@ -22,6 +23,7 @@ interface Cart {
 }
 
 export default function CartPage() {
+    const router = useRouter();
     const [cart, setCart] = useState<Cart | null>(null);
     const [loading, setLoading] = useState(true);
 
