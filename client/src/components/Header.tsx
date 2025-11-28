@@ -45,7 +45,7 @@ export default function Header() {
                             <>
                                 <button onClick={handleLogout} className={styles.textButton}>로그아웃</button>
                                 <Link href="/cart">장바구니</Link>
-                                <Link href="/mypage">마이페이지</Link>
+                                <Link href="/orders">주문내역</Link>
                             </>
                         ) : (
                             <>

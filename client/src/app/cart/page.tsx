@@ -129,8 +129,7 @@ export default function CartPage() {
             if (res.ok) {
                 alert('주문이 완료되었습니다!');
                 setCart(null); // 장바구니 비우기 (UI)
-                // TODO: 주문 내역 페이지로 이동
-                // router.push('/orders'); 
+                router.push('/orders');
             } else {
                 const errorText = await res.text();
                 alert(`주문 실패: ${errorText}`);
