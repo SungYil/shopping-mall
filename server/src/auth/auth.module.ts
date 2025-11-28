@@ -9,6 +9,8 @@ import { GoogleStrategy } from './strategies/google.strategy';
 
 import { NaverStrategy } from './strategies/naver.strategy';
 
+import { JwtStrategy } from './strategies/jwt.strategy';
+
 @Module({
   imports: [
     UsersModule,
@@ -23,6 +25,6 @@ import { NaverStrategy } from './strategies/naver.strategy';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, GoogleStrategy, NaverStrategy],
+  providers: [AuthService, GoogleStrategy, NaverStrategy, JwtStrategy],
 })
 export class AuthModule { }
