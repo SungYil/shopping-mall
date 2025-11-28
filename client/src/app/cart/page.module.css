@@ -1,0 +1,199 @@
+.title {
+    margin: 3rem 0;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.emptyCart {
+    text-align: center;
+    padding: 5rem 0;
+}
+
+.emptyCart p {
+    margin-bottom: 2rem;
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.continueButton {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.cartGrid {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 3rem;
+    margin-bottom: 5rem;
+}
+
+/* 장바구니 아이템 리스트 */
+.cartItems {
+    border-top: 1px solid #333;
+}
+
+.item {
+    display: grid;
+    grid-template-columns: 100px 1fr 100px 100px 40px;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.imageWrapper {
+    width: 100px;
+    height: 120px;
+    background-color: #f5f5f5;
+    overflow: hidden;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: #eee;
+}
+
+.itemInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.productName {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+.price {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.quantityControl {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    width: fit-content;
+}
+
+.quantityControl button {
+    width: 30px;
+    height: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+.quantityControl span {
+    width: 30px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.itemTotal {
+    font-weight: bold;
+    text-align: right;
+}
+
+.removeButton {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.removeButton:hover {
+    color: #333;
+}
+
+/* 주문 요약 (우측 사이드바) */
+.summary {
+    background-color: #f9f9f9;
+    padding: 2rem;
+    height: fit-content;
+    position: sticky;
+    top: 100px;
+}
+
+.summaryRow {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    color: #666;
+}
+
+.total {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #ddd;
+    color: #333;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.checkoutButton {
+    width: 100%;
+    padding: 1.2rem;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    margin-top: 2rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.checkoutButton:hover {
+    background-color: #555;
+}
+
+/* 반응형 */
+@media (max-width: 1024px) {
+    .cartGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .summary {
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .item {
+        grid-template-columns: 80px 1fr;
+        grid-template-rows: auto auto auto;
+        gap: 1rem;
+    }
+
+    .quantityControl {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    .itemTotal {
+        grid-column: 2;
+        grid-row: 3;
+        text-align: left;
+    }
+
+    .removeButton {
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: end;
+    }
+}
