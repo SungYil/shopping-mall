@@ -13,8 +13,9 @@ import { JwtStrategy } from './strategies/jwt.strategy';
 
 @Module({
   imports: [
+    ConfigModule, // ConfigService 주입을 위해 명시
     UsersModule,
-    PassportModule,
+    PassportModule.register({ defaultStrategy: 'jwt' }), // 기본 전략 설정
     JwtModule.registerAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
