@@ -37,12 +37,16 @@ export default function CartPage() {
             // 실제 구현에서는 로그인 시 토큰을 저장하는 로직이 선행되어야 합니다.
             // 만약 쿠키 기반 인증이라면 headers 설정 없이 credentials: 'include'를 사용해야 합니다.
 
-            // 임시: 토큰이 없으면 로그인 페이지로 유도하거나 빈 장바구니 처리
-            // const headers = token ? { Authorization: `Bearer ${token}` } : {};
+            if (!token) {
+                // 토큰이 없으면 로그인 페이지로 리다이렉트하거나 빈 장바구니 보여주기
+                setLoading(false);
+                return;
+            }
 
             const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cart`, {
-                // headers: { ...headers }, 
-                // credentials: 'include', // 쿠키 사용 시
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
             });
 
             if (res.ok) {
@@ -62,10 +66,12 @@ export default function CartPage() {
         if (newQuantity < 1) return;
 
         try {
+            const token = localStorage.getItem('token');
             const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cart/items/${itemId}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
                 },
                 body: JSON.stringify({ quantity: newQuantity }),
             });
@@ -82,8 +88,12 @@ export default function CartPage() {
         if (!confirm('정말 삭제하시겠습니까?')) return;
 
         try {
+            const token = localStorage.getItem('token');
             const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cart/items/${itemId}`, {
                 method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
             });
 
             if (res.ok) {
