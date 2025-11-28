@@ -109,6 +109,38 @@ export default function CartPage() {
         return cart.items.reduce((total, item) => total + item.product.price * item.quantity, 0);
     };
 
+    const handleCheckout = async () => {
+        if (!cart || cart.items.length === 0) {
+            alert('장바구니가 비어있습니다.');
+            return;
+        }
+
+        if (!confirm('주문하시겠습니까?')) return;
+
+        try {
+            const token = localStorage.getItem('token');
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/orders`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+            });
+
+            if (res.ok) {
+                alert('주문이 완료되었습니다!');
+                setCart(null); // 장바구니 비우기 (UI)
+                // TODO: 주문 내역 페이지로 이동
+                // router.push('/orders'); 
+            } else {
+                const errorText = await res.text();
+                alert(`주문 실패: ${errorText}`);
+            }
+        } catch (error) {
+            console.error('Checkout error:', error);
+            alert('주문 처리 중 오류가 발생했습니다.');
+        }
+    };
+
     if (loading) return <div className="container">Loading...</div>;
 
     if (!cart || cart.items.length === 0) {
@@ -181,7 +213,7 @@ export default function CartPage() {
                         <span>결제 예정 금액</span>
                         <span>{calculateTotal().toLocaleString()}원</span>
                     </div>
-                    <button className={styles.checkoutButton}>주문하기</button>
+                    <button className={styles.checkoutButton} onClick={handleCheckout}>주문하기</button>
                 </div>
             </div>
         </div>
