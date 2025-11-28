@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import styles from './page.module.css';
+import ProductActions from './ProductActions';
 
 interface Product {
     id: number;
@@ -79,27 +80,7 @@ export default async function ProductDetailPage({
                         <p>{product.description}</p>
                     </div>
 
-                    <div className={styles.actions}>
-                        <div className={styles.quantity}>
-                            <span>수량</span>
-                            <select className={styles.select}>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                        </div>
-
-                        <div className={styles.buttons}>
-                            <button className={`${styles.button} ${styles.cartButton}`}>
-                                장바구니 담기
-                            </button>
-                            <button className={`${styles.button} ${styles.buyButton}`}>
-                                바로 구매하기
-                            </button>
-                        </div>
-                    </div>
+                    <ProductActions productId={product.id} />
                 </div>
             </div>
         </div>
