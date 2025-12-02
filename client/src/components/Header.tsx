@@ -83,6 +83,7 @@ export default function Header() {
                         <Link href="/new">NEW</Link>
                         <Link href="/outer">OUTER</Link>
                         <Link href="/top">TOP</Link>
+                        <Link href="/bottom">BOTTOM</Link>
                         <Link href="/dress">DRESS</Link>
                     </nav>
                 </div>

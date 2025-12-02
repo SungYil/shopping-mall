@@ -25,6 +25,17 @@ export class OrdersService {
 
         // 3. 주문 생성 (트랜잭션)
         return this.prisma.$transaction(async (tx) => {
+            // 재고 확인 및 감소
+            for (const item of cart.items) {
+                if (item.product.stock < item.quantity) {
+                    throw new BadRequestException(`상품 ${item.product.name}의 재고가 부족합니다.`);
+                }
+                await tx.product.update({
+                    where: { id: item.productId },
+                    data: { stock: { decrement: item.quantity } },
+                });
+            }
+
             // 주문 생성
             const order = await tx.order.create({
                 data: {
