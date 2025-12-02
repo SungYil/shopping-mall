@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateProductDto } from './dto/create-product.dto';
+import { UpdateProductDto } from './dto/update-product.dto';
 
 @Injectable()
 export class ProductsService {
@@ -60,6 +61,29 @@ export class ProductsService {
         return this.prisma.product.findUnique({
             where: { id },
             include: { category: true }, // 카테고리 정보 포함
+        });
+    }
+
+    /**
+     * 상품 수정
+     * @param id 수정할 상품 ID
+     * @param updateProductDto 수정할 데이터
+     */
+    async update(id: number, updateProductDto: UpdateProductDto) {
+        return this.prisma.product.update({
+            where: { id },
+            data: updateProductDto,
+            include: { category: true },
+        });
+    }
+
+    /**
+     * 상품 삭제
+     * @param id 삭제할 상품 ID
+     */
+    async remove(id: number) {
+        return this.prisma.product.delete({
+            where: { id },
         });
     }
 }
