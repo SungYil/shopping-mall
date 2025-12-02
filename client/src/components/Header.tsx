@@ -57,7 +57,7 @@ export default function Header() {
                         {isLoggedIn ? (
                             <>
                                 <button onClick={handleLogout} className={styles.textButton}>로그아웃</button>
-                                {isAdmin && <Link href="/admin" className={styles.adminLink}>관리자</Link>}
+                                {isAdmin && <Link href="/admin" className={styles.adminLink} target="_blank">관리자</Link>}
                                 <Link href="/cart">장바구니</Link>
                                 <Link href="/orders">주문내역</Link>
                             </>
