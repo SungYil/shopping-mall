@@ -7,6 +7,7 @@ import styles from './Header.module.css';
 
 export default function Header() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(false);
     const router = useRouter();
 
     useEffect(() => {
@@ -14,6 +15,17 @@ export default function Header() {
         const checkLoginStatus = () => {
             const token = localStorage.getItem('token');
             setIsLoggedIn(!!token);
+
+            if (token) {
+                try {
+                    const payload = JSON.parse(atob(token.split('.')[1]));
+                    setIsAdmin(payload.role === 'ADMIN');
+                } catch (e) {
+                    setIsAdmin(false);
+                }
+            } else {
+                setIsAdmin(false);
+            }
         };
 
         checkLoginStatus();
@@ -32,6 +44,7 @@ export default function Header() {
         localStorage.removeItem('token');
         window.dispatchEvent(new Event('logout'));
         setIsLoggedIn(false);
+        setIsAdmin(false);
         alert('로그아웃 되었습니다.');
         router.push('/');
     };
@@ -44,6 +57,7 @@ export default function Header() {
                         {isLoggedIn ? (
                             <>
                                 <button onClick={handleLogout} className={styles.textButton}>로그아웃</button>
+                                {isAdmin && <Link href="/admin" className={styles.adminLink}>관리자</Link>}
                                 <Link href="/cart">장바구니</Link>
                                 <Link href="/orders">주문내역</Link>
                             </>
