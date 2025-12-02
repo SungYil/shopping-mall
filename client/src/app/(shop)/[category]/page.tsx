@@ -51,12 +51,27 @@ export default function CategoryPage({ params }: { params: Promise<{ category: s
     const fetchProducts = async () => {
         setLoading(true);
         try {
+            // 1. 카테고리 목록 가져오기 (ID 매핑을 위해)
+            const catRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories`);
+            if (!catRes.ok) throw new Error('Failed to fetch categories');
+            const categories: { id: number; name: string }[] = await catRes.json();
+
+            // 2. 현재 URL 파라미터(category)에 해당하는 카테고리 ID 찾기
+            const categoryName = CATEGORY_NAMES[category]; // 예: 'outer' -> 'OUTER'
+            const targetCategory = categories.find((c) => c.name === categoryName);
+
             let url = `${process.env.NEXT_PUBLIC_API_URL}/products`;
 
             // 카테고리 ID가 있는 경우 쿼리 파라미터 추가
-            if (CATEGORY_MAP[category]) {
-                url += `?categoryId=${CATEGORY_MAP[category]}`;
+            if (targetCategory) {
+                url += `?categoryId=${targetCategory.id}`;
+            } else if (category !== 'new' && category !== 'best') {
+                // NEW, BEST가 아닌데 카테고리를 못 찾았으면 빈 목록
+                setProducts([]);
+                setLoading(false);
+                return;
             }
+
             // NEW, BEST는 현재 별도 필터링 로직이 없으므로 전체 목록에서 최신순(기본)으로 가져옴
             // 추후 백엔드에 정렬 옵션이 추가되면 ?sort=best 등으로 처리 가능
 
