@@ -1,0 +1,25 @@
+
+> client@0.1.0 build
+> next build
+
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+   ??Next.js 16.0.4 (Turbopack)
+   - Environments: .env.local
+
+   Creating an optimized production build ...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ ??Compiled successfully in 1166.8ms
+   Running TypeScript ...
+Failed to compile.
+
+.next/dev/types/validator.ts:42:39
+Type error: Cannot find module '../../../src/app/login/page.js' or its corresponding type declarations.
+
+  40 | {
+  41 |   type __IsExpected<Specific extends AppPageConfig<"/login">> = Specific
+> 42 |   const handler = {} as typeof import("../../../src/app/login/page.js")
+     |                                       ^
+  43 |   type __Check = __IsExpected<typeof handler>
+  44 |   // @ts-ignore
+  45 |   type __Unused = __Check
+Next.js build worker exited with code: 1 and signal: null
