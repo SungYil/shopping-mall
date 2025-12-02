@@ -17,6 +17,7 @@
   "exclude": [
     "prisma",
     "node_modules",
-    "dist"
+    "dist",
+    "scripts"
   ]
 }
