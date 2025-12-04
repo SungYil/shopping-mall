@@ -5,4 +5,5 @@ export class UpdateProductDto {
     stock?: number;
     categoryId?: number;
     images?: string[];
+    isAttrangsDelivery?: boolean;
 }

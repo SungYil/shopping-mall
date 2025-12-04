@@ -20,6 +20,7 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
         stock: '',
         categoryId: '',
         images: '',
+        isAttrangsDelivery: false,
     });
     const [loading, setLoading] = useState(true);
 
@@ -52,6 +53,7 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
                     stock: String(product.stock),
                     categoryId: String(product.categoryId),
                     images: product.images ? product.images.join(', ') : '',
+                    isAttrangsDelivery: product.isAttrangsDelivery || false,
                 });
             }
         } catch (error) {
@@ -90,6 +92,7 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
                     stock: Number(formData.stock),
                     categoryId: Number(formData.categoryId),
                     images: imageArray,
+                    isAttrangsDelivery: formData.isAttrangsDelivery,
                 }),
             });
 
@@ -177,6 +180,17 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
                         value={formData.images}
                         onChange={(e) => setFormData({ ...formData, images: e.target.value })}
                     />
+                </div>
+
+                <div className={styles.checkboxField}>
+                    <label>
+                        <input
+                            type="checkbox"
+                            checked={formData.isAttrangsDelivery}
+                            onChange={(e) => setFormData({ ...formData, isAttrangsDelivery: e.target.checked })}
+                        />
+                        🚀 아뜨배송 (오늘 출발)
+                    </label>
                 </div>
 
                 <div className={styles.actions}>

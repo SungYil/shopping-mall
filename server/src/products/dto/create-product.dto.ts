@@ -5,4 +5,5 @@ export class CreateProductDto {
     stock: number;
     categoryId: number;
     images: string[];
+    isAttrangsDelivery?: boolean;
 }

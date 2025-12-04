@@ -19,6 +19,7 @@ export default function NewProductPage() {
         stock: '',
         categoryId: '',
         images: '',
+        isAttrangsDelivery: false,
     });
 
     useEffect(() => {
@@ -67,6 +68,7 @@ export default function NewProductPage() {
                     stock: Number(formData.stock),
                     categoryId: Number(formData.categoryId),
                     images: imageArray,
+                    isAttrangsDelivery: formData.isAttrangsDelivery,
                 }),
             });
 
@@ -152,6 +154,17 @@ export default function NewProductPage() {
                         value={formData.images}
                         onChange={(e) => setFormData({ ...formData, images: e.target.value })}
                     />
+                </div>
+
+                <div className={styles.checkboxField}>
+                    <label>
+                        <input
+                            type="checkbox"
+                            checked={formData.isAttrangsDelivery}
+                            onChange={(e) => setFormData({ ...formData, isAttrangsDelivery: e.target.checked })}
+                        />
+                        🚀 아뜨배송 (오늘 출발)
+                    </label>
                 </div>
 
                 <div className={styles.actions}>
