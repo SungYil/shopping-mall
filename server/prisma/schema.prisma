@@ -109,14 +109,14 @@ model Review {
   rating    Int      @default(5)
   images    String[]
   
-  // 리뷰 상세 옵션
-  purchasedOption String? // 구매한 옵션 (예: Pink / Free)
-  userHeight      Int?    // 키
-  userWeight      Int?    // 몸무게
-  userTopSize     String? // 상의 사이즈
-  userBottomSize  String? // 하의 사이즈
+  // Review Options
+  purchasedOption String?
+  userHeight      Int?
+  userWeight      Int?
+  userTopSize     String?
+  userBottomSize  String?
 
-  // 관리자 답글
+  // Admin Reply
   adminReply          String?
   adminReplyCreatedAt DateTime?
 
