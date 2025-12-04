@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import styles from './ReviewList.module.css';
+import { getOptimizedImageUrl } from '@/utils/image';
 
 interface Review {
     id: number;
@@ -67,7 +68,7 @@ export default function ReviewList({ productId }: { productId: number }) {
                             {review.images && review.images.length > 0 && (
                                 <div className={styles.images}>
                                     {review.images.map((img, index) => (
-                                        <img key={index} src={img} alt={`Review ${index}`} className={styles.image} />
+                                        <img key={index} src={getOptimizedImageUrl(img)} alt={`Review ${index}`} className={styles.image} />
                                     ))}
                                 </div>
                             )}
