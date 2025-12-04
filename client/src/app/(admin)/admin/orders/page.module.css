@@ -1,0 +1,93 @@
+.container {
+    padding: 2rem;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+.tableWrapper {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table thead {
+    background-color: #f8f9fa;
+}
+
+.table th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: #666;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.table td {
+    padding: 1rem;
+    border-bottom: 1px solid #dee2e6;
+    color: #333;
+    vertical-align: top;
+}
+
+.table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.email {
+    font-size: 0.875rem;
+    color: #666;
+}
+
+.item {
+    margin-bottom: 0.25rem;
+}
+
+.statusSelect {
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-size: 0.875rem;
+    cursor: pointer;
+}
+
+.statusSelect[data-status="PENDING"] {
+    color: #f39c12;
+    border-color: #f39c12;
+}
+
+.statusSelect[data-status="PAID"] {
+    color: #3498db;
+    border-color: #3498db;
+}
+
+.statusSelect[data-status="SHIPPED"] {
+    color: #9b59b6;
+    border-color: #9b59b6;
+}
+
+.statusSelect[data-status="DELIVERED"] {
+    color: #2ecc71;
+    border-color: #2ecc71;
+}
+
+.statusSelect[data-status="CANCELLED"] {
+    color: #e74c3c;
+    border-color: #e74c3c;
+}
+
+.empty {
+    padding: 4rem 2rem;
+    text-align: center;
+    color: #999;
+}

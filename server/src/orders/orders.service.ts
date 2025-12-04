@@ -93,4 +93,27 @@ export class OrdersService {
 
         return order;
     }
+
+    // 관리자용: 모든 주문 조회
+    async findAllForAdmin() {
+        return this.prisma.order.findMany({
+            include: {
+                user: {
+                    select: { name: true, email: true },
+                },
+                items: {
+                    include: { product: true },
+                },
+            },
+            orderBy: { createdAt: 'desc' },
+        });
+    }
+
+    // 관리자용: 주문 상태 변경
+    async updateStatus(id: number, status: string) {
+        return this.prisma.order.update({
+            where: { id },
+            data: { status: status as any },
+        });
+    }
 }
