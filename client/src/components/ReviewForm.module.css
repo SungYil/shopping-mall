@@ -55,6 +55,13 @@
     margin-bottom: 1rem;
 }
 
+.optionsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
 .button {
     background-color: #333;
     color: white;

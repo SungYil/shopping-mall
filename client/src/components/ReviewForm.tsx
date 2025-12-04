@@ -90,6 +90,49 @@ export default function ReviewForm({ productId, onReviewSubmitted }: { productId
                 onChange={(e) => setImages(e.target.value)}
             />
 
+            <div className={styles.optionsGrid}>
+                <input
+                    type="text"
+                    className={styles.input}
+                    placeholder="구매 옵션 (예: Pink / Free)"
+                    name="purchasedOption"
+                    value={options.purchasedOption}
+                    onChange={handleOptionChange}
+                />
+                <input
+                    type="number"
+                    className={styles.input}
+                    placeholder="키 (cm)"
+                    name="userHeight"
+                    value={options.userHeight}
+                    onChange={handleOptionChange}
+                />
+                <input
+                    type="number"
+                    className={styles.input}
+                    placeholder="몸무게 (kg)"
+                    name="userWeight"
+                    value={options.userWeight}
+                    onChange={handleOptionChange}
+                />
+                <input
+                    type="text"
+                    className={styles.input}
+                    placeholder="상의 사이즈 (예: 55, S)"
+                    name="userTopSize"
+                    value={options.userTopSize}
+                    onChange={handleOptionChange}
+                />
+                <input
+                    type="text"
+                    className={styles.input}
+                    placeholder="하의 사이즈 (예: 26, S)"
+                    name="userBottomSize"
+                    value={options.userBottomSize}
+                    onChange={handleOptionChange}
+                />
+            </div>
+
             <button type="submit" className={styles.button} disabled={isSubmitting}>
                 {isSubmitting ? '등록 중...' : '리뷰 등록'}
             </button>

@@ -12,6 +12,12 @@ interface Review {
         name: string;
     };
     createdAt: string;
+    purchasedOption?: string;
+    userHeight?: number;
+    userWeight?: number;
+    userTopSize?: string;
+    userBottomSize?: string;
+    adminReply?: string;
 }
 
 export default function ReviewList({ productId }: { productId: number }) {
@@ -48,6 +54,15 @@ export default function ReviewList({ productId }: { productId: number }) {
                                 <span className={styles.user}>{review.user.name}</span>
                                 <span className={styles.date}>{new Date(review.createdAt).toLocaleDateString()}</span>
                             </div>
+
+                            <div className={styles.options}>
+                                {review.purchasedOption && <span className={styles.optionTag}>옵션: {review.purchasedOption}</span>}
+                                {review.userHeight && <span className={styles.optionTag}>{review.userHeight}cm</span>}
+                                {review.userWeight && <span className={styles.optionTag}>{review.userWeight}kg</span>}
+                                {review.userTopSize && <span className={styles.optionTag}>Top: {review.userTopSize}</span>}
+                                {review.userBottomSize && <span className={styles.optionTag}>Bottom: {review.userBottomSize}</span>}
+                            </div>
+
                             <p className={styles.content}>{review.content}</p>
                             {review.images && review.images.length > 0 && (
                                 <div className={styles.images}>
