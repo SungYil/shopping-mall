@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import styles from './page.module.css';
+import ProductActions from './ProductActions';
 import CountdownTimer from '@/components/CountdownTimer';
 
 interface Product {
