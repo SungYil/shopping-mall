@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import styles from './page.module.css';
 import ProductActions from './ProductActions';
 import CountdownTimer from '@/components/CountdownTimer';
+import ProductReviews from '@/components/ProductReviews';
 
 interface Product {
     id: number;
@@ -88,6 +89,9 @@ export default async function ProductDetailPage({
                     <ProductActions productId={product.id} />
                 </div>
             </div>
+
+            {/* 리뷰 섹션 */}
+            <ProductReviews productId={product.id} />
         </div>
     );
 }
