@@ -108,6 +108,18 @@ model Review {
   content   String
   rating    Int      @default(5)
   images    String[]
+  
+  // 리뷰 상세 옵션
+  purchasedOption String? // 구매한 옵션 (예: Pink / Free)
+  userHeight      Int?    // 키
+  userWeight      Int?    // 몸무게
+  userTopSize     String? // 상의 사이즈
+  userBottomSize  String? // 하의 사이즈
+
+  // 관리자 답글
+  adminReply          String?
+  adminReplyCreatedAt DateTime?
+
   userId    Int
   user      User     @relation(fields: [userId], references: [id])
   productId Int
