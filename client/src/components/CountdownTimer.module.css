@@ -1,0 +1,44 @@
+.container {
+    background-color: #fff0f6;
+    /* 연한 핑크 배경 */
+    border: 1px solid #ffadd2;
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.badge {
+    display: inline-block;
+    background-color: #eb2f96;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    width: fit-content;
+}
+
+.message {
+    font-size: 1rem;
+    color: #333;
+}
+
+.timer {
+    color: #eb2f96;
+    font-weight: bold;
+    font-family: monospace;
+    font-size: 1.1rem;
+}
+
+.highlight {
+    color: #eb2f96;
+    font-weight: bold;
+}
+
+.subMessage {
+    font-size: 0.85rem;
+    color: #666;
+}

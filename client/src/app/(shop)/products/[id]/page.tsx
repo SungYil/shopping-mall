@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import styles from './page.module.css';
-import ProductActions from './ProductActions';
+import CountdownTimer from '@/components/CountdownTimer';
 
 interface Product {
     id: number;
@@ -10,6 +10,7 @@ interface Product {
     price: number;
     stock: number;
     images: string[];
+    isAttrangsDelivery: boolean;
     category: {
         name: string;
     };
@@ -79,6 +80,9 @@ export default async function ProductDetailPage({
                     <div className={styles.description}>
                         <p>{product.description}</p>
                     </div>
+
+                    {/* 아뜨배송 타이머 (isAttrangsDelivery가 true일 때만 표시) */}
+                    {product.isAttrangsDelivery && <CountdownTimer />}
 
                     <ProductActions productId={product.id} />
                 </div>
