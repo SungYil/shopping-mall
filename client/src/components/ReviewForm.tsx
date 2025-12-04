@@ -7,7 +7,19 @@ export default function ReviewForm({ productId, onReviewSubmitted }: { productId
     const [content, setContent] = useState('');
     const [rating, setRating] = useState(5);
     const [images, setImages] = useState('');
+    const [options, setOptions] = useState({
+        purchasedOption: '',
+        userHeight: '',
+        userWeight: '',
+        userTopSize: '',
+        userBottomSize: '',
+    });
     const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const handleOptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setOptions(prev => ({ ...prev, [name]: value }));
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -34,6 +46,11 @@ export default function ReviewForm({ productId, onReviewSubmitted }: { productId
                     content,
                     rating,
                     images: imageArray,
+                    purchasedOption: options.purchasedOption,
+                    userHeight: options.userHeight ? Number(options.userHeight) : undefined,
+                    userWeight: options.userWeight ? Number(options.userWeight) : undefined,
+                    userTopSize: options.userTopSize,
+                    userBottomSize: options.userBottomSize,
                 }),
             });
 
@@ -42,6 +59,13 @@ export default function ReviewForm({ productId, onReviewSubmitted }: { productId
                 setContent('');
                 setRating(5);
                 setImages('');
+                setOptions({
+                    purchasedOption: '',
+                    userHeight: '',
+                    userWeight: '',
+                    userTopSize: '',
+                    userBottomSize: '',
+                });
                 onReviewSubmitted(); // 부모 컴포넌트에 알림
             } else {
                 alert('리뷰 등록에 실패했습니다.');
